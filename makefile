@@ -8,10 +8,17 @@ dir_guard=@mkdir -p $(@D)
 
 # ------------------- compiler flags ---------------------
 CFLAGS = -mcpu=cortex-m4 -std=gnu11 -g3
+# -ffunction-sections; -fdata-sections
+# Place each function or data item into its own section
+# in the output file if the target supports arbitrary sections.
+# The name of the function or the name of the data item determines
+# the section's name in the output file.
+# optimisation trick, I assume
 CFLAGS += -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage
 # CFLAGS += -MMD -MP -MF # here aftter MF should go name of file we want the information to store (".d")
 #					- MT # same here but with ".o"
 CFLAGS += -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xC
+# specs - how to system call
 CFLAGS += --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb
 
 # ------------------- include dirs -----------------------
